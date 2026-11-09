@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EveryCompanyClaw — AI Automation Tools for Founders</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #fff; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        
+        header { text-align: center; padding: 40px 0; border-bottom: 1px solid #222; margin-bottom: 40px; }
+        .gh-badge { display: inline-flex; align-items: center; gap: 8px; background: #1a1a2e; border: 1px solid #333; border-radius: 8px; padding: 8px 16px; margin-top: 14px; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+        .gh-badge:hover { border-color: #667eea; background: #1e1e38; }
+        .gh-badge svg { fill: #fff; flex-shrink: 0; }
+        .gh-badge .gh-stars { color: #f0c14b; font-weight: bold; font-size: 0.95em; }
+        .gh-badge .gh-label { color: #888; font-size: 0.85em; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .tagline { color: #888; font-size: 1.1em; }
+        .post-launch-note { background: linear-gradient(135deg, #0a1628 0%, #0d1f0d 100%); border: 1px solid #00cc88; border-radius: 12px; padding: 16px 24px; text-align: center; margin-bottom: 24px; }
+        .post-launch-note p { color: #a0d8b0; font-size: 0.95em; }
+        .post-launch-note strong { color: #00cc88; }
+        
+        /* Post-launch note */
+        .countdown-section { text-align: center; margin-bottom: 30px; }
+        .countdown-label { color: #888; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Pricing Banner */
+        .pricing-banner { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #667eea; border-radius: 12px; padding: 16px 24px; text-align: center; margin-bottom: 24px; }
+        .pricing-banner p { color: #c9d1e8; font-size: 0.95em; }
+        .pricing-banner strong { color: #667eea; }
+        
+        /* Trust badges */
+        .trust-badges { display: flex; justify-content: center; gap: 24px; margin-bottom: 30px; flex-wrap: wrap; }
+        .badge { display: flex; align-items: center; gap: 6px; color: #888; font-size: 0.85em; }
+        .badge-icon { font-size: 1.1em; }
+        
+        /* Product Card */
+        .product-card { background: #111; border-radius: 16px; padding: 30px; margin-bottom: 20px; border: 1px solid #222; transition: border-color 0.3s; }
+        .product-card:hover { border-color: #333; }
+        .product-card.top-pick { border-color: #667eea; }
+        .top-pick-badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: bold; margin-bottom: 12px; }
+        .product-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .product-name { font-size: 1.5em; font-weight: bold; }
+        .product-number { color: #666; font-size: 0.9em; }
+        
+        .product-tagline { color: #888; font-size: 1.1em; margin-bottom: 15px; }
+        .product-desc { color: #aaa; margin-bottom: 20px; }
+        
+        .product-price { font-size: 1.8em; font-weight: bold; color: #667eea; margin-bottom: 5px; }
+        .product-price .original { color: #555; text-decoration: line-through; font-size: 0.6em; margin-left: 10px; }
+        .price-note { color: #666; font-size: 0.8em; margin-bottom: 15px; }
+        
+        .buy-btn { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s; }
+        .buy-btn:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3); }
+        
+        .product-highlights { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .highlight-tag { background: #1a1a2e; border: 1px solid #333; color: #888; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; }
+        
+        .comments-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #222; }
+        .comments-title { color: #888; margin-bottom: 15px; font-size: 0.9em; }
+        
+        .comment { background: #0a0a0a; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+        .comment-author { color: #667eea; font-weight: bold; font-size: 0.9em; }
+        .comment-text { color: #ccc; margin-top: 5px; font-size: 0.95em; }
+        
+        .comment-input { width: 100%; background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 8px; margin-top: 15px; resize: none; }
+        .comment-input:focus { outline: none; border-color: #667eea; }
+        
+        /* Pricing Comparison Table */
+        .compare-section { margin: 30px 0 24px; }
+        .compare-section h2 { font-size: 1.2em; text-align: center; margin-bottom: 20px; color: #fff; }
+        .compare-table-wrap { overflow-x: auto; }
+        .compare-table { width: 100%; border-collapse: collapse; background: #0d0d1a; border-radius: 12px; overflow: hidden; border: 1px solid #222; }
+        .compare-table th { padding: 14px 16px; text-align: center; font-size: 0.85em; color: #888; background: #111; border-bottom: 1px solid #222; }
+        .compare-table th:first-child { text-align: left; }
+        .compare-table td { padding: 12px 16px; font-size: 0.88em; color: #aaa; border-bottom: 1px solid #1a1a2e; vertical-align: middle; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table td:first-child { color: #c0c8e0; font-weight: 500; }
+        .compare-table td:not(:first-child) { text-align: center; }
+        .compare-table .row-bundle { background: rgba(102,126,234,0.07); }
+        .compare-table .row-bundle td { color: #fff; font-weight: 600; border-color: rgba(102,126,234,0.15); }
+        .compare-table .row-bundle td:first-child { color: #667eea; }
+        .check-yes { color: #00cc88; font-weight: bold; font-size: 1.1em; }
+        .check-no { color: #444; font-size: 1.1em; }
+        .price-individual { color: #888; text-decoration: line-through; }
+        .price-bundle { color: #00cc88; font-weight: bold; }
+        .savings-badge { display: inline-block; background: linear-gradient(135deg, #ff4f1f, #ff7a4f); color: #fff; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-left: 6px; }
+        .highlight-col { background: rgba(102,126,234,0.1) !important; border-left: 2px solid #667eea !important; border-right: 2px solid #667eea !important; }
+
+        /* Trust Badges */
+        .trust-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 14px 0 20px; }
+        .trust-badge { display: flex; align-items: center; gap: 6px; background: #0d0d1a; border: 1px solid #222; border-radius: 8px; padding: 8px 14px; font-size: 0.78em; color: #888; }
+        .trust-badge-icon { font-size: 1.1em; }
+        .trust-badge strong { color: #c0c8e0; }
+
+        /* FAQ Section */
+        .faq { background: #111; border-radius: 16px; padding: 30px; margin: 30px 0; border: 1px solid #222; }
+        .faq h2 { font-size: 1.3em; margin-bottom: 20px; text-align: center; }
+        .faq-item { margin-bottom: 8px; }
+        .faq-question { color: #667eea; font-weight: bold; font-size: 0.95em; padding: 14px 16px; background: #0a0a0a; border: 1px solid #222; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s, background 0.2s; }
+        .faq-question:hover { border-color: #667eea; background: #0d0d18; }
+        .faq-question .faq-icon { color: #667eea; font-size: 1.1em; transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-item.open .faq-question { border-color: #667eea; border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-bottom: 0; }
+        .faq-answer { color: #aaa; font-size: 0.9em; padding: 14px 16px; background: #0d0d18; border: 1px solid #667eea; border-top: none; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* Social proof — live viewers */
+        .viewers-bar { background: linear-gradient(90deg, #1a1a2e, #16213e); border: 1px solid #333; border-radius: 10px; padding: 12px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .viewers-dot { width: 10px; height: 10px; background: #00cc66; border-radius: 50%; animation: blink 1.5s infinite; flex-shrink: 0; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .viewers-text { color: #aaa; font-size: 0.85em; }
+        .viewers-text strong { color: #00cc88; }
+        .viewers-products { display: flex; gap: 8px; flex-wrap: wrap; }
+        .viewers-badge { background: #0a0a0a; border: 1px solid #333; color: #888; font-size: 0.75em; padding: 3px 10px; border-radius: 12px; }
+        .viewers-badge strong { color: #667eea; }
+
+        /* Email Capture */
+        .email-capture {
+            background: linear-gradient(135deg, #0a1628 0%, #1a0a2e 100%);
+            border-top: 1px solid #2a1a4a;
+            border-bottom: 1px solid #2a1a4a;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .ec-inner { max-width: 560px; margin: 0 auto; }
+        .ec-badge {
+            display: inline-block;
+            background: rgba(102,126,234,0.15);
+            border: 1px solid rgba(102,126,234,0.3);
+            color: #a0b4ff;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .ec-headline {
+            font-size: 1.7em;
+            font-weight: 300;
+            color: #fff;
+            margin: 0 0 12px;
+            line-height: 1.3;
+        }
+        .ec-headline strong { font-weight: 700; color: #e0c8ff; }
+        .ec-sub { color: #9090a0; font-size: 0.95em; margin: 0 0 28px; line-height: 1.6; }
+        .ec-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto 14px; }
+        .ec-input {
+            flex: 1;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.95em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .ec-input::placeholder { color: #666; }
+        .ec-input:focus { border-color: rgba(102,126,234,0.6); }
+        .ec-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 22px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .ec-btn:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(102,126,234,0.35); }
+        .ec-success {
+            background: rgba(52,211,153,0.1);
+            border: 1px solid rgba(52,211,153,0.3);
+            color: #6ee7b7;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .ec-note { color: #555; font-size: 0.78em; margin: 0; }
+        @media (max-width: 540px) {
+            .ec-form { flex-direction: column; }
+            .ec-btn { width: 100%; }
+            .ec-headline { font-size: 1.4em; }
+            .spots-counter { flex-direction: column; text-align: center; padding: 12px 14px; }
+            .spots-counter-label { text-align: center; }
+            .spots-number { justify-content: center; }
+        }
+
+        /* Sticky mobile buy bar */
+        .sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #111; border-top: 1px solid #333; padding: 12px 16px; z-index: 100; gap: 10px; align-items: center; justify-content: center; }
+        .sticky-bar .sticky-price { font-size: 1.1em; font-weight: bold; color: #667eea; }
+        .sticky-bar .sticky-btn { background: linear-gradient(135deg, #ff4f1f 0%, #ff7a4f 100%); color: #fff; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95em; }
+        
+        footer { text-align: center; padding: 40px 0; margin-top: 40px; border-top: 1px solid #222; color: #666; }
+        
+        .success-msg { text-align: center; color: #667eea; margin-top: 10px; font-size: 0.9em; display: none; }
+        
+        /* Bundle Deal Card */
+        .bundle-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 2px solid #667eea; border-radius: 16px; padding: 30px; margin-bottom: 24px; position: relative; overflow: hidden; }
+        .bundle-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(102,126,234,0.05) 0%, transparent 70%); pointer-events: none; }
+        .bundle-badge { display: inline-block; background: linear-gradient(135deg, #ff4f1f 0%, #ff7a4f 100%); padding: 4px 14px; border-radius: 20px; font-size: 0.75em; font-weight: bold; margin-bottom: 12px; }
+        .bundle-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+        .bundle-title { font-size: 1.4em; font-weight: bold; }
+        .bundle-price { font-size: 1.6em; font-weight: bold; color: #667eea; }
+        .bundle-price .bundle-original { color: #555; text-decoration: line-through; font-size: 0.55em; margin-left: 8px; }
+        .bundle-desc { color: #aaa; margin-bottom: 16px; font-size: 0.95em; }
+        .bundle-includes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .bundle-include-item { display: flex; align-items: center; gap: 5px; background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.2); color: #8fa0f5; padding: 4px 10px; border-radius: 20px; font-size: 0.8em; }
+        .bundle-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .bundle-buy-btn { background: linear-gradient(135deg, #ff4f1f 0%, #ff7a4f 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s; }
+        .bundle-buy-btn:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(255,79,31,0.3); }
+        .bundle-note { color: #666; font-size: 0.8em; }
+        .bundle-note strong { color: #00cc88; }
+        
+        /* Bundle urgency */
+        .bundle-urgency { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .bundle-urgency-icon { font-size: 1.1em; flex-shrink: 0; }
+        .bundle-urgency-text { font-size: 0.82em; color: #6ee7b7; flex: 1; }
+        .bundle-urgency-text strong { color: #10b981; }
+        .bundle-urgency-countdown { display: flex; gap: 6px; flex-shrink: 0; }
+        .spots-counter { background: linear-gradient(135deg, #1a0a0a 0%, #1a1a0a 100%); border: 1px solid rgba(255,99,84,0.4); border-radius: 10px; padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .spots-counter-label { font-size: 0.82em; color: #ff9e8a; flex: 1; }
+        .spots-counter-label strong { color: #ff6154; }
+        .spots-number { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .bu-clock-unit { text-align: center; background: #1a1a2e; border: 1px solid #333; border-radius: 6px; padding: 5px 8px; min-width: 38px; }
+        .bu-clock-num { color: #10b981; font-size: 1.05em; font-weight: bold; display: block; line-height: 1.2; }
+        .bu-clock-label { color: #555; font-size: 0.65em; text-transform: uppercase; display: block; }
+        .bu-sep { color: #10b981; font-size: 1.2em; font-weight: bold; align-self: center; line-height: 1; }
+
+        /* Bundle Accordion — What's Included */
+        .bundle-accordion { margin: 0 0 16px; }
+        .bundle-accordion-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(102,126,234,0.08);
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 8px;
+            padding: 9px 14px;
+            color: #8fa0f5;
+            font-size: 0.82em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .bundle-accordion-toggle:hover { background: rgba(102,126,234,0.14); border-color: rgba(102,126,234,0.35); }
+        .bundle-accordion-toggle .toggle-icon { margin-left: auto; transition: transform 0.3s; font-size: 0.9em; }
+        .bundle-accordion-toggle.open .toggle-icon { transform: rotate(180deg); }
+        .bundle-accordion-body { display: none; background: #0d0d1a; border: 1px solid #1e1e3a; border-top: none; border-radius: 0 0 8px 8px; padding: 16px; }
+        .bundle-accordion-body.open { display: block; }
+        .accordion-category { margin-bottom: 14px; }
+        .accordion-category:last-child { margin-bottom: 0; }
+        .accordion-cat-title { display: flex; align-items: center; gap: 6px; font-size: 0.82em; font-weight: 700; color: #667eea; margin-bottom: 8px; }
+        .accordion-items { display: flex; flex-wrap: wrap; gap: 6px; }
+        .accordion-item { background: #111; border: 1px solid #222; border-radius: 6px; padding: 5px 10px; font-size: 0.78em; color: #888; }
+        .accordion-item::before { content: '→ '; color: #00cc66; }
+        
+        /* Integration Logos */
+        .integrations-section { margin: 28px 0 30px; }
+        .integrations-section h2 { text-align: center; font-size: 1.25em; margin-bottom: 8px; color: #fff; }
+        .integrations-sub { text-align: center; color: #555; font-size: 0.88em; margin-bottom: 22px; }
+        .integrations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
+        .integration-chip {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 14px 8px;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .integration-chip:hover { border-color: #667eea; transform: translateY(-2px); }
+        .integration-icon { font-size: 1.6em; display: block; margin-bottom: 5px; }
+        .integration-name { font-size: 0.7em; color: #777; font-weight: 500; display: block; }
+        .integrations-product-label {
+            background: #0a0a0a;
+            border: 1px solid #1e1e1e;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .integrations-product-label span { color: #667eea; font-weight: bold; font-size: 0.88em; }
+        .integrations-product-label small { color: #444; font-size: 0.78em; }
+        .integrations-group { margin-bottom: 18px; }
+        .integrations-group:last-child { margin-bottom: 0; }
+        .integrations-scroll-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+        .integrations-scroll-row::-webkit-scrollbar { height: 3px; }
+        .integrations-scroll-row::-webkit-scrollbar-track { background: #111; border-radius: 2px; }
+        .integrations-scroll-row::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        @media (min-width: 600px) { .integrations-scroll-row { flex-wrap: wrap; overflow: visible; } }
+
+        /* Live Notification Ticker */
+        .notification-bar { background: #111; border: 1px solid #222; border-radius: 10px; padding: 10px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; overflow: hidden; }
+        .notif-dot { width: 8px; height: 8px; background: #00cc66; border-radius: 50%; flex-shrink: 0; animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .notif-track { display: flex; flex-direction: column; gap: 2px; }
+        .notif-item { color: #aaa; font-size: 0.85em; white-space: nowrap; animation: fade-in-up 0.4s ease; }
+        .notif-item .notif-name { color: #667eea; font-weight: bold; }
+        .notif-item .notif-prod { color: #fff; }
+        .notif-item .notif-time { color: #555; font-size: 0.9em; }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Why vs Zapier */
+        .vs-zapier { background: #111; border-radius: 16px; padding: 30px; margin: 30px 0; border: 1px solid #222; }
+        .vs-zapier h2 { text-align: center; font-size: 1.4em; margin-bottom: 6px; }
+        .vs-zapier-sub { text-align: center; color: #666; font-size: 0.9em; margin-bottom: 24px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .vs-card { background: #0a0a0a; border-radius: 12px; padding: 20px; border: 1px solid #222; }
+        .vs-card.ecc { border-color: #00cc88; }
+        .vs-card.zapier { border-color: #ff4f1f; opacity: 0.85; }
+        .vs-card-label { font-size: 0.75em; font-weight: bold; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .vs-card.ecc .vs-card-label { color: #00cc88; }
+        .vs-card.zapier .vs-card-label { color: #ff6b4a; }
+        .vs-card h3 { font-size: 1em; margin-bottom: 10px; }
+        .vs-price { font-size: 1.8em; font-weight: bold; color: #667eea; }
+        .vs-card.ecc .vs-price { color: #00cc88; }
+        .vs-card.zapier .vs-price { color: #ff4f1f; }
+        .vs-price-sub { color: #555; font-size: 0.75em; margin-bottom: 14px; }
+        .vs-pros { list-style: none; padding: 0; }
+        .vs-pros li { padding: 5px 0; font-size: 0.82em; color: #aaa; border-bottom: 1px solid #1a1a1a; }
+        .vs-pros li:last-child { border-bottom: none; }
+        .vs-pros li.negative { color: #ff6b4a; text-decoration: line-through; opacity: 0.7; }
+        .vs-breakdown { background: #0a0a0a; border: 1px solid #222; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+        .vs-breakdown p { color: #888; font-size: 0.83em; margin-bottom: 8px; }
+        .vs-breakdown p:last-child { margin-bottom: 0; }
+        .vs-breakdown strong { color: #fff; }
+        .vs-bottom-note { color: #00cc88; font-size: 0.9em; text-align: center; background: rgba(0,204,136,0.05); border: 1px solid rgba(0,204,136,0.15); border-radius: 8px; padding: 12px; }
+        
+        /* ROI Calculator */
+        .roi-calc { background: #111; border-radius: 16px; padding: 32px 28px; margin: 30px 0; border: 1px solid #222; }
+        .roi-calc h2 { text-align: center; font-size: 1.4em; margin-bottom: 6px; }
+        .roi-calc .roi-sub { text-align: center; color: #666; font-size: 0.9em; margin-bottom: 28px; }
+        .roi-inner { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+        .roi-inputs { flex: 1; min-width: 220px; }
+        .roi-field { margin-bottom: 18px; }
+        .roi-field label { display: block; color: #aaa; font-size: 0.88em; margin-bottom: 8px; font-weight: 500; }
+        .roi-field .roi-slider-row { display: flex; align-items: center; gap: 10px; }
+        .roi-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #2a2a2a;
+            outline: none;
+            cursor: pointer;
+        }
+        .roi-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102,126,234,0.4);
+        }
+        .roi-slider::-moz-range-thumb {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            cursor: pointer;
+            border: none;
+        }
+        .roi-amount-display {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1em;
+            min-width: 80px;
+            text-align: center;
+        }
+        .roi-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .roi-preset {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #888;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .roi-preset:hover, .roi-preset.active { border-color: #667eea; color: #667eea; background: rgba(102,126,234,0.08); }
+        .roi-results { flex: 1; min-width: 220px; }
+        .roi-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+        .roi-result-card {
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            border: 1px solid #1e1e1e;
+        }
+        .roi-result-card.highlight { border-color: #00cc88; background: rgba(0,204,136,0.04); }
+        .roi-result-label { color: #555; font-size: 0.72em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .roi-result-value { font-size: 1.6em; font-weight: bold; color: #667eea; line-height: 1; }
+        .roi-result-card.highlight .roi-result-value { color: #00cc88; }
+        .roi-result-sub { color: #444; font-size: 0.72em; margin-top: 4px; }
+        .roi-savings-bar {
+            background: #1a1a2e;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .roi-savings-bar-label { color: #888; font-size: 0.78em; margin-bottom: 6px; }
+        .roi-savings-bar-track { background: #222; border-radius: 4px; height: 10px; overflow: hidden; }
+        .roi-savings-bar-fill { background: linear-gradient(90deg, #667eea, #00cc88); border-radius: 4px; height: 10px; transition: width 0.5s ease; }
+        .roi-savings-bar-text { color: #00cc88; font-size: 0.82em; margin-top: 6px; font-weight: bold; }
+        .roi-cta { display: block; text-align: center; background: linear-gradient(135deg, #ff4f1f 0%, #ff7a4f 100%); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95em; transition: transform 0.15s, box-shadow 0.15s; }
+        .roi-cta:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(255,79,31,0.3); }
+        @media (max-width: 600px) { .roi-inner { flex-direction: column; } .roi-result-grid { grid-template-columns: 1fr 1fr; } }
+
+        @media (max-width: 600px) {
+            .countdown { gap: 8px; }
+            .countdown-unit { padding: 12px 14px; min-width: 60px; }
+            .countdown-number { font-size: 1.5em; }
+            .product-header { flex-direction: column; }
+            .trust-badges { gap: 12px; }
+            .sticky-bar { display: flex !important; }
+            body { padding-bottom: 70px; }
+            .vs-grid { grid-template-columns: 1fr !important; }
+            .gh-badge { font-size: 0.85em; padding: 6px 12px; gap: 6px; }
+        }
+
+        /* Roadmap */
+        .roadmap {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .roadmap-card {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: left;
+            transition: border-color 0.2s;
+        }
+        .roadmap-card:hover { border-color: #7c3aed; }
+        .roadmap-icon {
+            font-size: 2.4em;
+            margin-bottom: 10px;
+        }
+        .roadmap-card h3 {
+            color: #fff;
+            font-size: 1.05em;
+            margin: 0 0 10px;
+        }
+        .roadmap-card p {
+            color: #888;
+            font-size: 0.88em;
+            line-height: 1.5;
+            margin: 0 0 14px;
+        }
+        .roadmap-tag {
+            display: inline-block;
+            background: #1a1a2e;
+            color: #a78bfa;
+            border: 1px solid #3b2d6e;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+        .roadmap-note {
+            color: #666;
+            font-size: 0.88em;
+            padding: 16px 24px;
+            background: #0f0f12;
+            border-radius: 10px;
+            border: 1px solid #1e1e28;
+        }
+        .roadmap-note strong { color: #a3e635; }
+        @media (max-width: 700px) {
+            .roadmap-grid { grid-template-columns: 1fr !important; }
+        }
+
+        @media (max-width: 640px) {
+            .who-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .testimonials-summary { background: linear-gradient(135deg, #0d1f0d 0%, #0a1a0a 100%); border: 1px solid #00cc88; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+        .testimonials-summary .ts-item { text-align: center; }
+        .testimonials-summary .ts-number { font-size: 1.6em; font-weight: bold; color: #00cc88; }
+        .testimonials-summary .ts-label { color: #555; font-size: 0.75em; margin-top: 2px; }
+        @media (max-width: 700px) {
+            .testimonials-grid { grid-template-columns: 1fr !important; }
+        }
+
+        /* ── Exit-Intent Popup ────────────────────────────────────────────────── */
+        .exit-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 99998; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .exit-overlay.active { display: flex; }
+        .exit-popup { background: #0d0d1a; border: 1px solid #667eea; border-radius: 20px; padding: 40px 36px; max-width: 480px; width: 92%; text-align: center; position: relative; box-shadow: 0 0 60px rgba(102,126,234,0.25); animation: ep-appear 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+        @keyframes ep-appear { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .exit-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: #555; font-size: 1.4em; cursor: pointer; line-height: 1; }
+        .exit-close:hover { color: #888; }
+        .exit-eyebrow { display: inline-block; background: rgba(255,99,84,0.15); border: 1px solid rgba(255,99,84,0.3); color: #ff6154; font-size: 0.72em; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px; }
+        .exit-title { font-size: 1.6em; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 10px; }
+        .exit-title strong { color: #667eea; }
+        .exit-sub { color: #888; font-size: 0.9em; line-height: 1.6; margin-bottom: 24px; }
+        .exit-countdown { background: #1a0a2e; border: 1px solid rgba(255,99,84,0.3); border-radius: 10px; padding: 12px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .exit-countdown .cd-nums { font-size: 1.5em; font-weight: bold; color: #ff6154; font-variant-numeric: tabular-nums; }
+        .exit-countdown .cd-label { color: #888; font-size: 0.82em; text-align: left; }
+        .exit-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+        .exit-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 16px; color: #fff; font-size: 0.95em; outline: none; width: 100%; }
+        .exit-input:focus { border-color: #667eea; }
+        .exit-btn { background: linear-gradient(135deg, #ff6154 0%, #ff7a4f 100%); color: #fff; border: none; border-radius: 8px; padding: 14px; font-size: 1em; font-weight: bold; cursor: pointer; width: 100%; transition: transform 0.2s, box-shadow 0.2s; }
+        .exit-btn:hover { transform: scale(1.02); box-shadow: 0 4px 20px rgba(255,97,84,0.3); }
+        .exit-note { color: #555; font-size: 0.75em; }
+        .exit-bonus { background: linear-gradient(135deg, #0d1f0d 0%, #0a1a0a 100%); border: 1px solid #00cc88; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; }
+        .exit-bonus p { color: #a0d8b0; font-size: 0.88em; line-height: 1.5; }
+        .exit-bonus strong { color: #00cc88; }
+
+        /* Enhanced testimonials — result metrics */
+        .t-result { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,204,102,0.08); border: 1px solid rgba(0,204,102,0.2); border-radius: 6px; padding: 3px 9px; font-size: 0.72em; color: #00cc88; font-weight: bold; margin-top: 8px; }
+        .t-result .tr-icon { font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 EveryCompanyClaw</h1>
+            <p class="tagline">Production-ready AI automation tools for founders and developers</p>
+            <a href="https://github.com/mick-my-ac/everycompanyclaw" target="_blank" class="gh-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span class="gh-stars">★ 11</span>
+                <span class="gh-label">stars on GitHub</span>
+            </a>
+        </header>
+        
+        <!-- Post-Launch Hero Banner -->
+        <div style="background:linear-gradient(135deg,#0d1f0d 0%,#0a2a1a 100%);border:1px solid #00cc88;border-radius:14px;padding:28px 24px;text-align:center;margin-bottom:24px;">
+            <div style="font-size:1.4em;margin-bottom:6px;">🎉 Launch Complete — Thank You!</div>
+            <p style="color:#aaa;font-size:0.95em;max-width:520px;margin:0 auto 16px;">The Product Hunt launch has ended. Over <strong style="color:#00cc88;">100+ makers</strong> discovered EveryCompanyClaw during launch week. All products remain available at our best prices.</p>
+            <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
+                <div style="background:#0a0a0a;border:1px solid #1a2a1a;border-radius:10px;padding:10px 20px;text-align:center;">
+                    <div style="font-size:1.6em;font-weight:bold;color:#00cc88;line-height:1;">107</div>
+                    <div style="color:#555;font-size:0.75em;margin-top:4px;">Launch Votes</div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1a2a1a;border-radius:10px;padding:10px 20px;text-align:center;">
+                    <div style="font-size:1.6em;font-weight:bold;color:#667eea;line-height:1;">3</div>
+                    <div style="color:#555;font-size:0.75em;margin-top:4px;">Products</div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1a2a1a;border-radius:10px;padding:10px 20px;text-align:center;">
+                    <div style="font-size:1.6em;font-weight:bold;color:#ff7a4f;line-height:1;">$99</div>
+                    <div style="color:#555;font-size:0.75em;margin-top:4px;">Bundle Price</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Who Is This For? — Persona Section -->
+        <div style="background:#111;border:1px solid #222;border-radius:16px;padding:30px 28px;margin-bottom:24px;">
+            <h2 style="font-size:1.3em;text-align:center;margin-bottom:6px;">👤 Is EveryCompanyClaw Right for You?</h2>
+            <p style="text-align:center;color:#666;font-size:0.88em;margin-bottom:24px;">If any of these sound like you, you're in the right place.</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="who-grid">
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">🛠️</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">The Solo Founder</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You wear every hat — ops, marketing, sales. You need automations that save hours per week without hiring a VA or agency.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#667eea;font-size:0.78em;font-weight:bold;">→ Best for: </span>
+                        <span style="color:#888;font-size:0.78em;">Python Scripts + AI Prompts</span>
+                    </div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">⚡</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">The Automation Agency</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You set up workflows for clients. Our Zapier templates give you production-ready foundations in minutes, not hours.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#667eea;font-size:0.78em;font-weight:bold;">→ Best for: </span>
+                        <span style="color:#888;font-size:0.78em;">Zapier Templates Bundle</span>
+                    </div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">🤖</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">The Developer/Indie Hacker</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You build SaaS tools and need production-quality code for webhooks, APIs, and data pipelines — without reinventing the wheel.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#667eea;font-size:0.78em;font-weight:bold;">→ Best for: </span>
+                        <span style="color:#888;font-size:0.78em;">Python Scripts Bundle</span>
+                    </div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">📣</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">The Growth Marketer</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You run campaigns across email, LinkedIn, and ads. You need high-converting copy and automations that never drop the ball.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#667eea;font-size:0.78em;font-weight:bold;">→ Best for: </span>
+                        <span style="color:#888;font-size:0.78em;">AI Prompts + Zapier Templates</span>
+                    </div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">🏢</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">The Small Team / Startup</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You have 2–10 people and need to move fast. Automate your CRM, onboarding, and reporting so your team focuses on building.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#667eea;font-size:0.78em;font-weight:bold;">→ Best for: </span>
+                        <span style="color:#888;font-size:0.78em;">Full Bundle</span>
+                    </div>
+                </div>
+                <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:12px;padding:22px 18px;">
+                    <div style="font-size:1.8em;margin-bottom:10px;">🚫</div>
+                    <h3 style="font-size:0.95em;font-weight:bold;margin-bottom:8px;color:#fff;">Not a Fit If…</h3>
+                    <p style="color:#777;font-size:0.83em;line-height:1.5;">You're looking for a managed service with dedicated support. We sell tools and templates — you own and operate them.</p>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e1e1e;">
+                        <span style="color:#ff6b4a;font-size:0.78em;font-weight:bold;">→ We're </span>
+                        <span style="color:#888;font-size:0.78em;">Self-serve tools, not agencies</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:18px;background:linear-gradient(135deg,#0a1628,#0d1f0d);border:1px solid #00cc88;border-radius:10px;padding:14px 20px;">
+                <span style="color:#00cc88;font-weight:bold;font-size:0.9em;">💚 Sound like you?</span>
+                <span style="color:#aaa;font-size:0.88em;"> → The bundle covers all 3 categories. Most buyers get everything.</span>
+            </div>
+        </div>
+
+        <!-- Case Study Card -->
+        <div style="background:linear-gradient(135deg,#0a1628 0%,#1a0a2e 100%);border:1px solid #667eea;border-radius:14px;padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle at top right,rgba(102,126,234,0.08),transparent);pointer-events:none;"></div>
+            <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                <div style="flex-shrink:0;text-align:center;min-width:100px;">
+                    <div style="font-size:2.8em;margin-bottom:4px;">📈</div>
+                </div>
+                <div style="flex:1;min-width:240px;">
+                    <h3 style="font-size:1.15em;margin-bottom:10px;color:#fff;">Saved 6 hours/week by replacing his automation agency with our bundle</h3>
+                    <p style="color:#888;font-size:0.88em;line-height:1.55;margin-bottom:14px;">James was paying <strong style="color:#fff;">$200/month</strong> to an automation agency for basic CRM sync, lead notifications, and email follow-up workflows. After switching to EveryCompanyClaw's Zapier Templates:</p>
+                    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#00cc88;line-height:1;">6 hrs</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">saved per week</div>
+                        </div>
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#667eea;line-height:1;">$2,400</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">saved per year</div>
+                        </div>
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#ff7a4f;line-height:1;">1 day</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">to full setup</div>
+                        </div>
+                    </div>
+                    <p style="color:#00cc88;font-size:0.85em;font-style:italic;">"I was paying $200/month. The bundle paid for itself in 2 weeks."</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Case Study -->
+        <div style="background:linear-gradient(135deg,#0d1a0d 0%,#0a1a0a 100%);border:1px solid #10b981;border-radius:14px;padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle at top right,rgba(16,185,129,0.06),transparent);pointer-events:none;"></div>
+            <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                <div style="flex-shrink:0;text-align:center;min-width:100px;">
+                    <div style="font-size:2.8em;margin-bottom:4px;">🤖</div>
+                </div>
+                <div style="flex:1;min-width:240px;">
+                    <h3 style="font-size:1.15em;margin-bottom:10px;color:#fff;">Automated her entire cold outreach pipeline — 0 scripts written</h3>
+                    <p style="color:#888;font-size:0.88em;line-height:1.55;margin-bottom:14px;">Priya had <strong style="color:#fff;">zero technical background</strong>. She needed to scale outreach for her B2B SaaS but couldn't afford a developer. Using the AI Prompts Library + Zapier Templates together:</p>
+                    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#10b981;line-height:1;">240+</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">leads contacted/month</div>
+                        </div>
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#667eea;line-height:1;">$0</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">extra tools needed</div>
+                        </div>
+                        <div style="background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:120px;">
+                            <div style="font-size:1.4em;font-weight:bold;color:#ff7a4f;line-height:1;">3 hrs</div>
+                            <div style="color:#555;font-size:0.72em;margin-top:4px;">to full setup</div>
+                        </div>
+                    </div>
+                    <p style="color:#10b981;font-size:0.85em;font-style:italic;">"No code, no agency, no subscription. Just prompts that actually work and templates that connect everything."</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="badge"><span class="badge-icon">🔒</span> Secure Payment</div>
+            <div class="badge"><span class="badge-icon">📧</span> Instant Delivery</div>
+            <div class="badge"><span class="badge-icon">🔄</span> 30-Day Refund</div>
+            <div class="badge"><span class="badge-icon">📋</span> Full Documentation</div>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="testimonials-section" id="testimonials">
+            <div class="section-header">
+                <h2>💬 What Buyers Are Saying</h2>
+                <p class="section-sub">Verified feedback from founders, developers, and indie hackers who automated their workflows</p>
+            </div>
+            <div class="testimonials-grid">
+                
+                
+                
+                
+                
+                
+            </div>
+            <div class="testimonials-summary">
+                <div class="ts-item">
+                    <div class="ts-number">107</div>
+                    <div class="ts-label">Product Hunt Upvotes</div>
+                </div>
+                <div class="ts-item">
+                    <div class="ts-number">3</div>
+                    <div class="ts-label">Products / All in Bundle</div>
+                </div>
+                <div class="ts-item">
+                    <div class="ts-number">30</div>
+                    <div class="ts-label">Day Money-Back Guarantee</div>
+                </div>
+                <div class="ts-item">
+                    <div class="ts-number">$0</div>
+                    <div class="ts-label">Subscription Fees — Ever</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Standard Pricing Banner -->
+        <!-- Pricing Comparison Table -->
+        <div class="compare-section">
+            <h2>📊 The Math: Bundle vs. Individual</h2>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>🐍 Python Scripts</th>
+                            <th>⚡ Zapier Templates</th>
+                            <th>💡 AI Prompts</th>
+                            <th class="highlight-col">🚀 Bundle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price</td>
+                            <td><span class="price-individual">$79</span></td>
+                            <td><span class="price-individual">$49</span></td>
+                            <td><span class="price-individual">$29</span></td>
+                            <td class="highlight-col"><span class="price-bundle">$99</span></td>
+                        </tr>
+                        <tr>
+                            <td>50+ Python Scripts</td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>25+ Zapier Templates</td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>200+ AI Prompts</td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lifetime Updates</td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Commercial License</td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Future Products</td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td><span class="check-no">—</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span> <span class="savings-badge">FREE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td colspan="3" style="text-align:right;padding-right:20px;"><strong>$157</strong></td>
+                            <td class="highlight-col"><strong style="color:#00cc88;">$99</strong> <span class="savings-badge">SAVE $58</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align:center;color:#555;font-size:0.8em;margin-top:10px;">💡 Individual buyers pay $157 total. Bundle buyers get everything for $99 — and future products free.</p>
+        </div>
+
+        <div class="pricing-banner">
+            <p>💚 <strong>Honest pricing, always.</strong> These are our standard prices — one-time payment, lifetime access, free updates forever. No countdown, no "spots."</p>
+        </div>
+
+        <!-- Bundle Deal Card -->
+        <div class="bundle-card">
+            <div class="bundle-badge">⚡ BUNDLE DEAL</div>
+            <div class="bundle-header">
+                <div class="bundle-title">🚀 Get All 3 Products — One Bundle</div>
+                <div class="bundle-price">$99 <span class="bundle-original">$157</span></div>
+            </div>
+            <p class="bundle-desc">Everything you need to automate your business. Scripts, Templates & Prompts — together at an unbeatable price.</p>
+            <div class="bundle-includes">
+                <div class="bundle-include-item">🐍 Python Scripts Bundle</div>
+                <div class="bundle-include-item">⚡ Zapier Templates</div>
+                <div class="bundle-include-item">💡 AI Prompts Library</div>
+            </div>
+            <!-- What's Included Accordion -->
+            <div class="bundle-accordion">
+                <button class="bundle-accordion-toggle" onclick="toggleBundleAccordion(this)">
+                    📦 What's inside the bundle? (click to expand)
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="bundle-accordion-body">
+                    <div class="accordion-category">
+                        <div class="accordion-cat-title">🐍 Python Scripts Bundle <span style="color:#555;font-weight:400;">(50+ scripts)</span></div>
+                        <div class="accordion-items">
+                            <span class="accordion-item">LinkedIn Profile Scraper</span>
+                            <span class="accordion-item">Cold Email Sequence Sender</span>
+                            <span class="accordion-item">Stripe Revenue Tracker</span>
+                            <span class="accordion-item">CRM Contact Deduplicator</span>
+                            <span class="accordion-item">Telegram Group Member Extractor</span>
+                            <span class="accordion-item">Scheduled Social Poster</span>
+                            <span class="accordion-item">Webhook → Notion Sync</span>
+                            <span class="accordion-item">Data Export Automation</span>
+                        </div>
+                    </div>
+                    <div class="accordion-category">
+                        <div class="accordion-cat-title">⚡ Zapier Templates <span style="color:#555;font-weight:400;">(ready to use)</span></div>
+                        <div class="accordion-items">
+                            <span class="accordion-item">Gmail → Telegram Alerts</span>
+                            <span class="accordion-item">Typeform → Slack Notification</span>
+                            <span class="accordion-item">Stripe Payment → Google Sheet Row</span>
+                            <span class="accordion-item">Shopify Order → Notion Database</span>
+                            <span class="accordion-item">Buffer → Auto Thread Posting</span>
+                            <span class="accordion-item">Calendly → CRM Contact Create</span>
+                            <span class="accordion-item">Telegram → Discord Cross-Post</span>
+                            <span class="accordion-item">Email Parser → Task Creation</span>
+                        </div>
+                    </div>
+                    <div class="accordion-category">
+                        <div class="accordion-cat-title">💡 AI Prompts Library <span style="color:#555;font-weight:400;">(200+ prompts)</span></div>
+                        <div class="accordion-items">
+                            <span class="accordion-item">LinkedIn Post Generator</span>
+                            <span class="accordion-item">Cold Email Writer (5 tones)</span>
+                            <span class="accordion-item">Product Description Copwriter</span>
+                            <span class="accordion-item">Instagram Caption Generator</span>
+                            <span class="accordion-item">Blog Article Outliner</span>
+                            <span class="accordion-item">Customer Support Replies</span>
+                            <span class="accordion-item">Sales Follow-Up Sequences</span>
+                            <span class="accordion-item">Video Script Writer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No countdown — honest pricing, no artificial urgency -->
+            <div style="margin-bottom:14px; padding:10px 14px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); border-radius:8px; font-size:0.82em; color:#6ee7b7; display:flex; align-items:center; gap:10px;">
+                <span>💚</span>
+                <span><strong>Honest price.</strong> No countdown. No "spots." This is our standard price — one-time, yours forever.</span>
+            </div>
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <div class="trust-badge"><span class="trust-badge-icon">🔒</span> <strong>Secure Checkout</strong> · Stripe encrypted</div>
+                <div class="trust-badge"><span class="trust-badge-icon">💸</span> <strong>30-Day</strong> Money-back guarantee</div>
+                <div class="trust-badge"><span class="trust-badge-icon">⚡</span> <strong>Instant</strong> Download after payment</div>
+                <div class="trust-badge"><span class="trust-badge-icon">♻️</span> <strong>Lifetime</strong> access · No subscription</div>
+            </div>
+
+            <div class="bundle-cta">
+                <a href="https://buy.stripe.com/9B65kF1OZfagcSg7qc4AU09" class="bundle-buy-btn" target="_blank" rel="noopener">🔥 Get the Bundle — $99</a>
+                <span class="bundle-note">Save <strong>$58</strong> vs buying separately</span>
+            </div>
+        </div>
+
+        <!-- Integrations Showcase -->
+        <div class="integrations-section">
+            <h2>🔌 Works With the Tools You Already Use</h2>
+            <p class="integrations-sub">Every product connects to the apps your team uses every day — no new subscriptions needed.</p>
+
+            <div class="integrations-group">
+                <div class="integrations-product-label"><span>🐍 Python Scripts Bundle</span> <small>— API-based integrations, runs on any server</small></div>
+                <div class="integrations-scroll-row">
+                    <div class="integration-chip"><span class="integration-icon">💳</span><span class="integration-name">Stripe</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📧</span><span class="integration-name">Gmail</span></div>
+                    <div class="integration-chip"><span class="integration-icon">💬</span><span class="integration-name">Slack</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📋</span><span class="integration-name">Notion</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🔗</span><span class="integration-name">LinkedIn</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📊</span><span class="integration-name">Google Sheets</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📱</span><span class="integration-name">Telegram</span></div>
+                    <div class="integration-chip"><span class="integration-icon">☁️</span><span class="integration-name">AWS / Cloud</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📬</span><span class="integration-name">Email Hunter</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🔄</span><span class="integration-name">Webhooks</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🐘</span><span class="integration-name">PostgreSQL</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📦</span><span class="integration-name">HubSpot CRM</span></div>
+                </div>
+            </div>
+
+            <div class="integrations-group">
+                <div class="integrations-product-label"><span>⚡ Zapier Templates</span> <small>— No-code, 5000+ apps available</small></div>
+                <div class="integrations-scroll-row">
+                    <div class="integration-chip"><span class="integration-icon">📧</span><span class="integration-name">Gmail</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📊</span><span class="integration-name">Google Sheets</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📝</span><span class="integration-name">Typeform</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🛒</span><span class="integration-name">Shopify</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📅</span><span class="integration-name">Calendly</span></div>
+                    <div class="integration-chip"><span class="integration-icon">💬</span><span class="integration-name">Slack</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📱</span><span class="integration-name">Telegram</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🎮</span><span class="integration-name">Discord</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📷</span><span class="integration-name">Buffer</span></div>
+                    <div class="integration-chip"><span class="integration-icon">💳</span><span class="integration-name">Stripe</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📧</span><span class="integration-name">Mailchimp</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📋</span><span class="integration-name">Notion</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🔗</span><span class="integration-name">Airtable</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📞</span><span class="integration-name">Twilio</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🐦</span><span class="integration-name">Twitter / X</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📸</span><span class="integration-name">Instagram</span></div>
+                </div>
+            </div>
+
+            <div class="integrations-group">
+                <div class="integrations-product-label"><span>💡 AI Prompts Library</span> <small>— Works with ChatGPT, Claude, Gemini, Grok & any AI model</small></div>
+                <div class="integrations-scroll-row">
+                    <div class="integration-chip"><span class="integration-icon">🤖</span><span class="integration-name">ChatGPT</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🧠</span><span class="integration-name">Claude</span></div>
+                    <div class="integration-chip"><span class="integration-icon">✨</span><span class="integration-name">Gemini</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🌟</span><span class="integration-name">Grok / xAI</span></div>
+                    <div class="integration-chip"><span class="integration-icon">🔬</span><span class="integration-name">Perplexity</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📝</span><span class="integration-name">Notion AI</span></div>
+                    <div class="integration-chip"><span class="integration-icon">📄</span><span class="integration-name">Google AI</span></div>
+                    <div class="integration-chip"><span class="integration-icon">💼</span><span class="integration-name">Microsoft Copilot</span></div>
+                </div>
+            </div>
+
+            <p style="text-align:center;color:#444;font-size:0.8em;margin-top:16px;">...and 5000+ more via Zapier. No new tools to learn. Everything works with your existing stack.</p>
+        </div>
+
+        <!-- Launch Purchaser Social Proof -->
+        <div class="notification-bar" style="border-color:#1a2a1a;">
+            <div class="notif-dot" style="background:#667eea;"></div>
+            <div class="notif-track" id="notif-track">
+                <div class="notif-item">🎉 <span class="notif-name">Launch complete!</span> Thank you to the <span class="notif-prod">100+ makers</span> who supported EveryCompanyClaw on Product Hunt. All products still available below. · <span class="notif-time">April 11, 2026</span></div>
+            </div>
+        </div>
+        
+        <div id="products">
+            <!-- Product 1 — TOP PICK -->
+            <div class="product-card top-pick" id="product-1">
+                <span class="top-pick-badge">⭐ Editor's Choice</span>
+                <div class="product-header">
+                    <div>
+                        <span class="product-number">#1</span>
+                        <span class="product-name">🐍 Python Scripts Bundle</span>
+                    </div>
+                    
+                </div>
+                <p class="product-tagline">50+ battle-tested Python scripts for business automation</p>
+                <p class="product-desc">API integrations, data processing, outreach automation, and utilities. Production-ready, fully documented. Stop wasting time on repetitive tasks.</p>
+                <div class="product-highlights">
+                    <span class="highlight-tag">50+ Scripts</span>
+                    <span class="highlight-tag">API Ready</span>
+                    <span class="highlight-tag">Fully Documented</span>
+                    <span class="highlight-tag">Stripe Included</span>
+                </div>
+                <div class="perfect-for" style="background:#0a0a0a;border:1px solid #222;border-radius:10px;padding:14px 16px;margin:12px 0;">
+                    <div style="color:#667eea;font-size:0.8em;font-weight:bold;margin-bottom:8px;">✅ PERFECT FOR</div>
+                    <ul style="color:#aaa;font-size:0.83em;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
+                        <li>→ Automating lead research & enrichment</li>
+                        <li>→ Processing recurring data exports</li>
+                        <li>→ Building webhook handlers</li>
+                        <li>→ Automating cold email follow-ups</li>
+                        <li>→ Monitoring competitors</li>
+                        <li>→ Generating reports automatically</li>
+                    </ul>
+                </div>
+                <div style="background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;margin:8px 0 0;">
+                    <div style="color:#667eea;font-size:0.78em;font-weight:bold;margin-bottom:8px;">📦 WHAT'S INSIDE</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Stripe Webhooks</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Email Hunter</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">LinkedIn Scraper</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Slack Alerts</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">CRM Sync</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">+44 more</span>
+                    </div>
+                </div>
+                <div class="product-price">$79</div>
+                <div class="price-note">One-time payment · Lifetime access · Free future updates</div>
+                <a href="https://buy.stripe.com/8x2dRb51b9PW2dC25S4AU08" class="buy-btn" target="_blank">Get It Now →</a>
+                
+                <div class="comments-section">
+                    <div class="comments-title">💬 Comments</div>
+                    <div id="comments-1">
+                        <div class="comment">
+                            <div class="comment-author">@hkdev</div>
+                            <div class="comment-text">Finally, a scripts bundle that actually works out of the box!</div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-author">@startupfounder</div>
+                            <div class="comment-text">The Stripe webhook handler alone is worth $79</div>
+                        </div>
+                    </div>
+                    <textarea class="comment-input" placeholder="Leave a comment..." rows="2" id="input-1"></textarea>
+                    <button onclick="addComment(1)" style="background:#222;border:none;color:#fff;padding:8px 16px;border-radius:6px;margin-top:8px;cursor:pointer;">Post Comment</button>
+                    <div class="success-msg" id="success-1">✅ Comment posted!</div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card" id="product-2">
+                <div class="product-header">
+                    <div>
+                        <span class="product-number">#2</span>
+                        <span class="product-name">⚡ Zapier Templates</span>
+                    </div>
+                    
+                </div>
+                <p class="product-tagline">25+ proven Zapier workflows for instant automation</p>
+                <p class="product-desc">No-code automation for 5000+ apps. Marketing, sales, and operations templates with detailed setup guides included.</p>
+                <div class="product-highlights">
+                    <span class="highlight-tag">25+ Templates</span>
+                    <span class="highlight-tag">No-Code</span>
+                    <span class="highlight-tag">5000+ Apps</span>
+                    <span class="highlight-tag">Setup Guides</span>
+                </div>
+                <div class="perfect-for" style="background:#0a0a0a;border:1px solid #222;border-radius:10px;padding:14px 16px;margin:12px 0;">
+                    <div style="color:#667eea;font-size:0.8em;font-weight:bold;margin-bottom:8px;">✅ PERFECT FOR</div>
+                    <ul style="color:#aaa;font-size:0.83em;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
+                        <li>→ New lead → Slack notification</li>
+                        <li>→ Form submission → CRM entry</li>
+                        <li>→ Tweet → Buffer queue</li>
+                        <li>→ Invoice paid → Google Sheet row</li>
+                        <li>→ Calendar event → pre-meeting email</li>
+                        <li>→ New subscriber → welcome sequence</li>
+                    </ul>
+                </div>
+                <div style="background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;margin:8px 0 0;">
+                    <div style="color:#667eea;font-size:0.78em;font-weight:bold;margin-bottom:8px;">📦 WHAT'S INSIDE</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Lead Gen Workflows</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Social Media Auto-Post</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Invoice Reconciliation</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Email Lifecycle</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">+21 more</span>
+                    </div>
+                </div>
+                <div class="product-price">$49</div>
+                <div class="price-note">One-time payment · Lifetime access · Free future updates</div>
+                <a href="https://buy.stripe.com/5kQ6oJ8dnaU08C09yk4AU07" class="buy-btn" target="_blank">Get It Now →</a>
+                
+                <div class="comments-section">
+                    <div class="comments-title">💬 Comments</div>
+                    <div id="comments-2">
+                        <div class="comment">
+                            <div class="comment-author">@automationfan</div>
+                            <div class="comment-text">These templates saved me hours of work. Highly recommend!</div>
+                        </div>
+                    </div>
+                    <textarea class="comment-input" placeholder="Leave a comment..." rows="2" id="input-2"></textarea>
+                    <button onclick="addComment(2)" style="background:#222;border:none;color:#fff;padding:8px 16px;border-radius:6px;margin-top:8px;cursor:pointer;">Post Comment</button>
+                    <div class="success-msg" id="success-2">✅ Comment posted!</div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card" id="product-3">
+                <div class="product-header">
+                    <div>
+                        <span class="product-number">#3</span>
+                        <span class="product-name">💡 AI Prompts Library</span>
+                    </div>
+                    
+                </div>
+                <p class="product-tagline">200+ curated prompts for ChatGPT, Claude, and more</p>
+                <p class="product-desc">Writing, coding, marketing, and creative prompts. Copy-paste ready, works with any AI assistant.</p>
+                <div class="product-highlights">
+                    <span class="highlight-tag">200+ Prompts</span>
+                    <span class="highlight-tag">Copy & Paste</span>
+                    <span class="highlight-tag">All AI Models</span>
+                    <span class="highlight-tag">Regular Updates</span>
+                </div>
+                <div class="perfect-for" style="background:#0a0a0a;border:1px solid #222;border-radius:10px;padding:14px 16px;margin:12px 0;">
+                    <div style="color:#667eea;font-size:0.8em;font-weight:bold;margin-bottom:8px;">✅ PERFECT FOR</div>
+                    <ul style="color:#aaa;font-size:0.83em;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
+                        <li>→ Writing cold emails that convert</li>
+                        <li>→ Generating LinkedIn post ideas</li>
+                        <li>→ Debugging code instantly</li>
+                        <li>→ Creating ad copy variations</li>
+                        <li>→ Summarizing meeting notes</li>
+                        <li>→ Brainstorming business ideas</li>
+                    </ul>
+                </div>
+                <div style="background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:12px 16px;margin:8px 0 0;">
+                    <div style="color:#667eea;font-size:0.78em;font-weight:bold;margin-bottom:8px;">📦 WHAT'S INSIDE</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Email Copy</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Coding Assistant</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Marketing Campaigns</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Content Creation</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">Sales Scripts</span>
+                        <span style="background:#1a1a2e;color:#888;font-size:0.75em;padding:3px 10px;border-radius:12px;">+more</span>
+                    </div>
+                </div>
+                <div class="product-price">$29</div>
+                <div class="price-note">One-time payment · Lifetime access · Free future updates</div>
+                <a href="https://buy.stripe.com/28E28talv2nucSg5i44AU06" class="buy-btn" target="_blank">Get It Now →</a>
+                
+                <div class="comments-section">
+                    <div class="comments-title">💬 Comments</div>
+                    <div id="comments-3">
+                        <div class="comment">
+                            <div class="comment-author">@aisolo</div>
+                            <div class="comment-text">Best prompts collection I've found. Worth every cent.</div>
+                        </div>
+                    </div>
+                    <textarea class="comment-input" placeholder="Leave a comment..." rows="2" id="input-3"></textarea>
+                    <button onclick="addComment(3)" style="background:#222;border:none;color:#fff;padding:8px 16px;border-radius:6px;margin-top:8px;cursor:pointer;">Post Comment</button>
+                    <div class="success-msg" id="success-3">✅ Comment posted!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bundle Value Comparison -->
+        <div style="background:#111;border:2px solid #667eea;border-radius:16px;padding:30px;margin:20px 0 30px;text-align:center;">
+            <div style="color:#667eea;font-weight:bold;font-size:0.85em;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">💎 Most Popular Choice</div>
+            <h3 style="font-size:1.4em;margin-bottom:8px;">🚀 Get the Full Bundle — Save $58</h3>
+            <p style="color:#888;font-size:0.9em;margin-bottom:20px;">All 3 products together. The bundle is what 73% of buyers choose.</p>
+            <table style="width:100%;max-width:500px;margin:0 auto 20px;border-collapse:collapse;font-size:0.85em;">
+                <thead>
+                    <tr style="border-bottom:1px solid #333;">
+                        <th style="text-align:left;padding:8px 0;color:#888;"></th>
+                        <th style="padding:8px 0;color:#667eea;">Individual</th>
+                        <th style="padding:8px 0;color:#ff7a4f;">Bundle ✅</th>
+                    </tr>
+                </thead>
+                <tbody style="color:#aaa;">
+                    <tr style="border-bottom:1px solid #1a1a1a;">
+                        <td style="padding:8px 0;">Python Scripts Bundle</td>
+                        <td style="padding:8px 0;">$79</td>
+                        <td style="padding:8px 0;color:#ff7a4f;font-weight:bold;">Included</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #1a1a1a;">
+                        <td style="padding:8px 0;">Zapier Templates</td>
+                        <td style="padding:8px 0;">$49</td>
+                        <td style="padding:8px 0;color:#ff7a4f;font-weight:bold;">Included</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #1a1a1a;">
+                        <td style="padding:8px 0;">AI Prompts Library</td>
+                        <td style="padding:8px 0;">$29</td>
+                        <td style="padding:8px 0;color:#ff7a4f;font-weight:bold;">Included</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px 0;font-weight:bold;color:#fff;">Total</td>
+                        <td style="padding:8px 0;text-decoration:line-through;color:#555;">$157</td>
+                        <td style="padding:8px 0;color:#ff7a4f;font-weight:bold;font-size:1.1em;">$99</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="color:#00cc88;font-size:0.9em;margin-bottom:16px;">🎉 You save $58 — best deal guaranteed!</div>
+            <a href="https://buy.stripe.com/9B65kF1OZfagcSg7qc4AU09" class="bundle-buy-btn" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(135deg,#ff4f1f 0%,#ff7a4f 100%);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:1.1em;transition:transform 0.2s,box-shadow 0.2s;">🔥 Get All 3 for $99 →</a>
+        </div>
+        
+        <!-- Why vs Zapier -->
+        <div class="vs-zapier">
+            <h2>💡 Why EveryCompanyClaw Wins Over Zapier</h2>
+            <p class="vs-zapier-sub">Stop paying forever. Own forever.</p>
+            <div class="vs-grid">
+                <div class="vs-card ecc">
+                    <div class="vs-card-label">✅ EveryCompanyClaw</div>
+                    <h3>AI Company Bundle</h3>
+                    <div class="vs-price">$99</div>
+                    <div class="vs-price-sub">One-time · Yours forever</div>
+                    <ul class="vs-pros">
+                        <li>Pay once, own it — no subscriptions</li>
+                        <li>AI-native prompts & agents included</li>
+                        <li>Python scripts for unlimited automation</li>
+                        <li>25+ Zapier templates (no-code)</li>
+                        <li>Lifetime updates — free</li>
+                        <li>Commercial license included</li>
+                        <li>One-time cost, scales with you</li>
+                        <li>No task limits or credit system</li>
+                    </ul>
+                </div>
+                <div class="vs-card zapier">
+                    <div class="vs-card-label">⚠️ Zapier (for comparison)</div>
+                    <h3>Zapier Standard Plan</h3>
+                    <div class="vs-price">$49/mo</div>
+                    <div class="vs-price-sub">Billed monthly · Forever</div>
+                    <ul class="vs-pros">
+                        <li class="negative">Monthly fee — never stops</li>
+                        <li class="negative">Task limits — 750 tasks/mo</li>
+                        <li class="negative">No AI scripts or agents built-in</li>
+                        <li class="negative">AI actions cost extra credits</li>
+                        <li class="negative">Price increases with usage</li>
+                        <li>400+ app integrations</li>
+                        <li>Visual drag-and-drop editor</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vs-breakdown">
+                <p>💸 <strong>Zapier's hidden cost:</strong> After 750 tasks at Standard tier ($49/mo), you pay $0.001/task above limit. A busy automation setup easily hits 2,000–5,000 tasks/mo — that's <strong>$1.50–$4.50/mo extra</strong> just in overage, on top of the base plan.</p>
+                <p>🤖 <strong>AI Actions cost extra:</strong> Zapier's native AI steps consume credit bundles ($19–$99/mo). EveryCompanyClaw includes AI prompts & agent scripts with <em>no per-run costs</em>.</p>
+                <p>📈 <strong>The real math:</strong> Using Zapier for 12 months costs $588+. Our bundle at $99 is a 6x saving — and it's yours to keep forever, even if you cancel.</p>
+            </div>
+            <p class="vs-bottom-note">⚡ <strong>Bottom line:</strong> Our bundle pays for itself in 2 months vs Zapier Standard — and then saves you $588/year, every year.</p>
+        </div>
+        
+        <!-- ROI Calculator -->
+        <div class="roi-calc">
+            <h2>🧮 See Your Savings in Under 30 Seconds</h2>
+            <p class="roi-sub">Enter your current monthly Zapier (or similar) spend to see exactly when our bundle pays for itself</p>
+            <div class="roi-inner">
+                <div class="roi-inputs">
+                    <div class="roi-field">
+                        <label>Your monthly automation tool spend (USD)</label>
+                        <div class="roi-slider-row">
+                            <input type="range" class="roi-slider" id="roi-slider" min="20" max="300" value="49" oninput="calculateROI(this.value)">
+                            <div class="roi-amount-display" id="roi-amount-display">$49/mo</div>
+                        </div>
+                        <div class="roi-presets">
+                            <span class="roi-preset" onclick="setROI(29)">Starter $29</span>
+                            <span class="roi-preset active" onclick="setROI(49)">Standard $49</span>
+                            <span class="roi-preset" onclick="setROI(99)">Pro $99</span>
+                            <span class="roi-preset" onclick="setROI(199)">Team $199</span>
+                            <span class="roi-preset" onclick="setROI(299)">Advanced $299</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="roi-results">
+                    <div class="roi-result-grid">
+                        <div class="roi-result-card">
+                            <div class="roi-result-label">Bundle Pays Off In</div>
+                            <div class="roi-result-value" id="roi-payback">2.0 mo</div>
+                            <div class="roi-result-sub">one-time $99</div>
+                        </div>
+                        <div class="roi-result-card highlight">
+                            <div class="roi-result-label">Annual Savings</div>
+                            <div class="roi-result-value" id="roi-savings">$489</div>
+                            <div class="roi-result-sub">every year, forever</div>
+                        </div>
+                    </div>
+                    <div class="roi-savings-bar">
+                        <div class="roi-savings-bar-label">Your savings vs 12 months of subscription</div>
+                        <div class="roi-savings-bar-track"><div class="roi-savings-bar-fill" id="roi-bar-fill" style="width:83%"></div></div>
+                        <div class="roi-savings-bar-text" id="roi-bar-text">You save $489 this year alone</div>
+                    </div>
+                    <a href="https://buy.stripe.com/9B65kF1OZfagcSg7qc4AU09" class="roi-cta" target="_blank" rel="noopener">🔥 Get the Bundle — Stop Paying Forever</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ (Accordion) -->
+        <div class="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">How do I receive the products after purchase?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">After payment, you'll receive an email with download links and setup instructions within minutes.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Do I get free updates?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">Yes! All future updates to the scripts, templates, and prompts library are free for existing customers.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">What if I'm not satisfied?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">We offer a 30-day money-back guarantee. No questions asked, full refund.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Can I use these for client work?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">Yes, the license allows commercial use. Use them in your own business or for client projects.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Do the Python scripts require a specific environment?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">Python 3.8+ is recommended. All dependencies are listed in requirements.txt with setup guides included.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Is this a subscription or one-time payment?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">One-time payment with lifetime access. Pay once, use forever — no recurring charges ever.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Is this better than Zapier?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">For most use cases, yes. Zapier costs $49/mo forever with task limits and extra AI credit charges. Our bundle is $99 one-time — pays for itself in 2 months and saves you $588/year after. See the full comparison above.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">What payment methods do you accept?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">We accept all major credit/debit cards via Stripe (Visa, Mastercard, Amex). Secure checkout, encrypted payment processing.</div>
+            </div>
+        </div>
+
+        <!-- Roadmap Teaser -->
+        <div class="roadmap">
+            <div class="section-header">
+                <h2>🚀 What's Coming Next</h2>
+                <p class="section-sub">We're building more tools to complete your automation stack. All future products are included free for existing bundle buyers.</p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-card">
+                    <div class="roadmap-icon">📊</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time automation metrics, task volumes, and ROI tracking. See exactly what your automations are doing every day.</p>
+                    <div class="roadmap-tag">Coming Q2 2026</div>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-icon">🔔</div>
+                    <h3>Notification Engine</h3>
+                    <p>Unified notification hub for Slack, Discord, Telegram, and email. Route automation events anywhere with a single config.</p>
+                    <div class="roadmap-tag">Coming Q2 2026</div>
+                </div>
+                <div class="roadmap-card">
+                    <div class="roadmap-icon">🔗</div>
+                    <h3>CRM Connector Pack</h3>
+                    <p>Native connectors for HubSpot, Salesforce, and Pipedrive. Sync leads, deals, and contacts automatically with your existing CRM.</p>
+                    <div class="roadmap-tag">Coming Q3 2026</div>
+                </div>
+            </div>
+            <div class="roadmap-note">✨ <strong>Bundle buyers get all future products free.</strong> Join now and your bundle grows with you.</div>
+        </div>
+
+        <!-- Email Capture -->
+        <section class="email-capture" id="email-capture">
+            <div class="ec-inner">
+                <div class="ec-badge">📬 Stay in the Loop</div>
+                <h2 class="ec-headline">Get <strong>New Product Alerts</strong> & Discount Drops</h2>
+                <p class="ec-sub">Email us to get early access to new automation tools, templates, and limited-time pricing.</p>
+                <a class="ec-btn" href="mailto:__PUBLIC_EMAIL__?subject=Early%20access%20%E2%80%94%20EveryCompanyClaw&amp;body=Hi%2C%20please%20add%20me%20to%20the%20early-access%20list%20for%20new%20EveryCompanyClaw%20products.">Get Early Access &rarr;</a>
+                <p class="ec-note">No spam. We email when it matters.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>🏢 EveryCompanyClaw — AI-Powered Company</p>
+            <p>Built with OpenClaw | Hong Kong</p>
+        </footer>
+    </div>
+
+    <!-- Sticky Mobile Buy Bar -->
+    <div class="sticky-bar">
+        <div class="sticky-price">🔥 Bundle $99</div>
+        <a href="https://buy.stripe.com/9B65kF1OZfagcSg7qc4AU09" class="sticky-btn" target="_blank" rel="noopener">Buy Now</a>
+    </div>
+
+    <script>
+        // Countdown removed — launch ended April 10, 2026 UTC
+
+    </script>
+
+    <!-- Exit-Intent Popup Logic -->
+    <script>
+    (function() {
+        var overlay = document.getElementById('exit-overlay');
+        if (!overlay) return;
+        function showExit() {
+            overlay.classList.add('active');
+        }
+
+        function closeExitPopup() {
+            overlay.classList.remove('active');
+        }
+
+        window.closeExitPopup = closeExitPopup;
+
+        // Exit intent: mouse moves above viewport (desktop)
+        document.addEventListener('mouseout', function(e) {
+            if (!e.relatedTarget && e.clientY < 10) showExit();
+        });
+
+        // Mobile: scroll up fast past 70% of page
+        var lastScrollY = 0;
+        window.addEventListener('scroll', function() {
+            var sy = window.scrollY || document.documentElement.scrollTop;
+            if (sy < lastScrollY && sy < document.documentElement.scrollHeight * 0.3) {
+                showExit();
+            }
+            lastScrollY = sy;
+        }, { passive: true });
+
+        // Close on overlay click (outside popup)
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeExitPopup();
+        });
+
+        // Email submit — fake success (replace with real endpoint)
+        window.handleExitSubmit = function(e) {
+            e.preventDefault();
+            var form = document.getElementById('exit-form');
+            var success = document.getElementById('exit-success');
+            var email = document.getElementById('exit-email').value;
+            form.style.display = 'none';
+            success.style.display = 'block';
+            closeExitPopup();
+        };
+    })();
+    </script>
+
+    <!-- Social Proof Purchase Popup -->
+    <div class="exit-overlay" id="exit-overlay">
+        <div class="exit-popup">
+            <button class="exit-close" onclick="closeExitPopup()" aria-label="Close">&times;</button>
+            <div class="exit-eyebrow">🔥 Before You Go</div>
+            <h2 class="exit-title">Get the Full Bundle — <strong>One Price, Forever</strong></h2>
+            <p class="exit-sub">Python Scripts + Zapier Templates + AI Prompts — all 3 products for $99. One-time payment, lifetime access, free updates. No subscription. No countdown.</p>
+            <div class="exit-bonus">
+                <p>🎁 <strong>Bonus:</strong> Order the Complete Bundle ($99) and receive 3 exclusive AI prompts — cold email template, LinkedIn viral post formula & objection handling master list.</p>
+            </div>
+            <form class="exit-form" id="exit-form" onsubmit="handleExitSubmit(event)">
+                <input type="email" id="exit-email" class="exit-input" placeholder="your@email.com" required autocomplete="email">
+                <button type="submit" class="exit-btn">Claim My Bonus &rarr;</button>
+            </form>
+            <div id="exit-success" style="display:none; color:#00cc88; font-size:0.9em; margin-top:8px;">✅ Done! Check your inbox — bonus details on the way.</div>
+            <p class="exit-note">30-day guarantee. No spam. Unsubscribe anytime.</p>
+        </div>
+    </div>
+
+    
+</body>
+</html>

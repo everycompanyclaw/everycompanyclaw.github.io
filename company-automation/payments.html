@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Automation Tools — EveryCompanyClaw</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #0a0a0f; min-height: 100vh; }
+
+        /* Top bar */
+        .top-bar { background: #635bff; color: #fff; text-align: center; padding: 8px 16px; font-size: 0.85em; }
+        .top-bar a { color: #fff; font-weight: bold; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { color: #fff; font-size: 2.2em; margin-bottom: 10px; }
+        .subtitle { color: #888; font-size: 1.1em; }
+        .tagline-highlight { color: #635bff; font-weight: bold; }
+
+        /* Launch special banner */
+        .launch-banner { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #635bff; border-radius: 14px; padding: 20px 30px; text-align: center; margin-bottom: 30px; }
+        .launch-banner .fire { font-size: 1.3em; }
+        .launch-banner p { color: #c9d1e8; }
+        .launch-banner .promo { color: #fff; font-weight: bold; font-size: 1.1em; margin-top: 6px; }
+        .launch-banner .promo code { background: #0a0a1a; border: 1px solid #444; padding: 3px 10px; border-radius: 6px; color: #635bff; }
+
+        /* Trust row */
+        .trust-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 35px; flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 7px; color: #666; font-size: 0.85em; }
+        .trust-icon { font-size: 1.1em; }
+
+        /* Products grid */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .product-card { background: #111; border: 1px solid #222; border-radius: 16px; padding: 28px 24px; text-align: center; transition: border-color 0.3s, transform 0.2s; position: relative; overflow: hidden; }
+        .product-card:hover { border-color: #333; transform: translateY(-2px); }
+        .product-card.top-pick { border-color: #635bff; }
+        .product-card.top-pick::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #635bff, #764ba2); }
+
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: bold; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge.top { background: linear-gradient(135deg, #635bff, #764ba2); color: #fff; }
+        .badge.new { background: #1a1a2e; border: 1px solid #333; color: #888; }
+
+        .product-name { color: #fff; font-size: 1.2em; font-weight: bold; margin-bottom: 6px; }
+        .product-tagline { color: #777; font-size: 0.88em; margin-bottom: 16px; min-height: 40px; }
+        .product-price { font-size: 2em; font-weight: bold; color: #635bff; margin-bottom: 4px; }
+        .product-price .was { color: #444; text-decoration: line-through; font-size: 0.55em; margin-left: 8px; }
+        .price-note { color: #555; font-size: 0.78em; margin-bottom: 16px; }
+        .product-highlights { text-align: left; margin-bottom: 18px; }
+        .product-highlights li { color: #888; font-size: 0.85em; margin: 5px 0; list-style: none; padding-left: 16px; position: relative; }
+        .product-highlights li::before { content: '✓'; position: absolute; left: 0; color: #00cc88; font-size: 0.85em; }
+
+        .buy-btn { display: block; background: #635bff; color: #fff; padding: 14px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1em; transition: background 0.2s, box-shadow 0.2s, transform 0.2s; position: relative; }
+        .buy-btn:hover { background: #5248d4; box-shadow: 0 4px 20px rgba(99, 91, 255, 0.35); transform: scale(1.02); }
+        .buy-btn.secondary { background: #1a1a1a; border: 1px solid #333; color: #888; margin-top: 8px; font-size: 0.88em; padding: 10px 20px; }
+        .buy-btn.secondary:hover { background: #222; color: #aaa; box-shadow: none; transform: none; }
+
+        /* Trust badge under buy button */
+        .btn-trust { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 8px; color: #555; font-size: 0.72em; }
+        .btn-trust-icon { font-size: 0.9em; }
+
+        /* Coupon section */
+        .coupon-section { background: #0e0e0e; border: 1px solid #1e1e1e; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; text-align: center; }
+        .coupon-label { color: #888; font-size: 0.85em; margin-bottom: 10px; }
+        .coupon-label span { color: #635bff; font-weight: bold; }
+        .coupon-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .coupon-input { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 0.95em; width: 180px; outline: none; transition: border-color 0.2s; font-family: inherit; }
+        .coupon-input:focus { border-color: #635bff; }
+        .coupon-input::placeholder { color: #555; }
+        .coupon-input.applied { border-color: #00cc88; color: #00cc88; }
+        .coupon-input.rejected { border-color: #ff4444; }
+        .coupon-btn { background: #222; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 8px; font-size: 0.9em; cursor: pointer; font-family: inherit; font-weight: 600; transition: background 0.2s; }
+        .coupon-btn:hover { background: #333; color: #fff; }
+        .coupon-result { margin-top: 8px; font-size: 0.82em; font-weight: 600; }
+        .coupon-result.success { color: #00cc88; }
+        .coupon-result.error { color: #ff5555; }
+
+        .coupon-note { color: #444; font-size: 0.75em; margin-top: 8px; }
+
+        /* Checkout stepper */
+        .checkout-steps { display: flex; justify-content: center; gap: 0; margin: 30px 0 36px; }
+        .checkout-step { display: flex; align-items: center; gap: 10px; padding: 0 24px; position: relative; }
+        .checkout-step:not(:last-child)::after { content: ''; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); width: 40px; height: 2px; background: #2a2a3a; }
+        .step-icon { width: 36px; height: 36px; border-radius: 50%; background: #1a1a2e; border: 2px solid #635bff; color: #635bff; display: flex; align-items: center; justify-content: center; font-size: 0.85em; font-weight: bold; flex-shrink: 0; }
+        .step-text { color: #888; font-size: 0.85em; }
+        .step-text strong { color: #fff; display: block; font-size: 0.95em; }
+        .checkout-steps.wrap { flex-wrap: wrap; gap: 16px; }
+        .checkout-steps.wrap .checkout-step:not(:last-child)::after { display: none; }
+
+        /* Post-payment reassurance */
+        .post-payment { background: linear-gradient(135deg, #0f1a0f 0%, #0a1a15 100%); border: 1px solid #1a3a2a; border-radius: 14px; padding: 24px 30px; margin: 30px 0 36px; display: flex; align-items: center; gap: 20px; }
+        .post-payment-icon { font-size: 2.2em; flex-shrink: 0; }
+        .post-payment-text h3 { color: #fff; font-size: 1em; margin-bottom: 4px; }
+        .post-payment-text p { color: #666; font-size: 0.85em; line-height: 1.5; }
+        .post-payment-text p strong { color: #00cc88; }
+
+        /* Bundle card */
+        .bundle-section { margin: 40px 0; }
+        .bundle-card { background: linear-gradient(135deg, #1a1035 0%, #0f1a2e 50%, #0a1f1a 100%); border: 1px solid #635bff; border-radius: 20px; padding: 40px; text-align: center; position: relative; overflow: hidden; }
+        .bundle-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(99,91,255,0.08) 0%, transparent 60%); pointer-events: none; }
+        .bundle-badge { display: inline-block; background: linear-gradient(135deg, #635bff, #764ba2); padding: 6px 18px; border-radius: 20px; font-size: 0.8em; font-weight: bold; color: #fff; margin-bottom: 16px; }
+        .bundle-title { color: #fff; font-size: 1.8em; margin-bottom: 8px; }
+        .bundle-desc { color: #888; font-size: 0.95em; margin-bottom: 20px; }
+        .bundle-price { font-size: 2.4em; font-weight: bold; color: #00ff88; margin-bottom: 4px; }
+        .bundle-price .was { color: #555; text-decoration: line-through; font-size: 0.6em; margin-left: 10px; }
+        .bundle-save { color: #00cc88; font-size: 0.9em; margin-bottom: 20px; font-weight: bold; }
+        .bundle-items { display: flex; justify-content: center; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+        .bundle-item { background: #0a0a15; border: 1px solid #222; border-radius: 10px; padding: 10px 16px; color: #888; font-size: 0.85em; }
+        .bundle-item .val { color: #fff; font-weight: bold; }
+        .bundle-btn { display: inline-block; background: linear-gradient(135deg, #00cc88, #00aa66); color: #fff; padding: 16px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1em; transition: transform 0.2s, box-shadow 0.2s; }
+        .bundle-btn:hover { transform: scale(1.05); box-shadow: 0 4px 25px rgba(0, 204, 136, 0.3); }
+        .bundle-note { color: #555; font-size: 0.8em; margin-top: 12px; }
+
+        /* FAQ */
+        .faq { background: #0e0e0e; border-radius: 16px; padding: 36px; margin: 40px 0; border: 1px solid #1e1e1e; }
+        .faq h2 { color: #fff; font-size: 1.3em; margin-bottom: 24px; text-align: center; }
+        .faq-item { margin-bottom: 18px; }
+        .faq-q { color: #635bff; font-weight: bold; font-size: 0.95em; margin-bottom: 6px; }
+        .faq-a { color: #777; font-size: 0.88em; line-height: 1.6; }
+
+        /* Social proof */
+        .social-proof { background: #0e0e0e; border-radius: 16px; padding: 30px; margin: 30px 0; border: 1px solid #1e1e1e; text-align: center; }
+        .social-proof h3 { color: #fff; margin-bottom: 20px; }
+        .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+        .proof-stat { background: #111; border-radius: 10px; padding: 16px; }
+        .proof-num { color: #635bff; font-size: 1.8em; font-weight: bold; }
+        .proof-label { color: #666; font-size: 0.8em; }
+
+        /* Footer */
+        footer { text-align: center; padding: 30px 0; color: #444; font-size: 0.85em; border-top: 1px solid #1a1a1a; margin-top: 40px; }
+        footer a { color: #635bff; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6em; }
+            .products-grid { grid-template-columns: 1fr; }
+            .bundle-card { padding: 28px 20px; }
+            .bundle-items { flex-direction: column; align-items: center; }
+            .trust-row { gap: 14px; }
+            .checkout-steps { gap: 12px; }
+            .checkout-step { padding: 0 8px; }
+            .checkout-step:not(:last-child)::after { display: none; }
+            .step-text { font-size: 0.75em; }
+            .post-payment { flex-direction: column; text-align: center; gap: 12px; padding: 20px 16px; }
+            .ob-body { flex-direction: column; }
+            .ob-right { text-align: left; }
+            .ob-btn { display: block; text-align: center; }
+        }
+
+        /* Order bump */
+    .order-bump {
+        background: linear-gradient(135deg, #0f1a20 0%, #0a1520 100%);
+        border: 1px solid #1a3a4a;
+        border-left: 4px solid #667eea;
+        border-radius: 14px;
+        padding: 24px 28px;
+        margin: 30px 0;
+    }
+    .ob-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+    .ob-tag {
+        background: #667eea;
+        color: #fff;
+        font-size: 0.72em;
+        font-weight: bold;
+        padding: 3px 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .ob-title {
+        color: #fff;
+        font-size: 1.05em;
+        font-weight: bold;
+    }
+    .ob-body {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+    .ob-left {
+        flex: 1;
+        min-width: 240px;
+    }
+    .ob-product {
+        color: #667eea;
+        font-weight: bold;
+        margin-bottom: 6px;
+        font-size: 0.95em;
+    }
+    .ob-desc {
+        color: #888;
+        font-size: 0.88em;
+        line-height: 1.55;
+        margin-bottom: 8px;
+    }
+    .ob-bonus {
+        color: #00cc88;
+        font-size: 0.82em;
+        background: rgba(0,204,136,0.08);
+        border: 1px solid rgba(0,204,136,0.2);
+        border-radius: 6px;
+        padding: 8px 12px;
+    }
+    .ob-right {
+        text-align: right;
+        flex-shrink: 0;
+    }
+    .ob-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95em;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ob-btn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 20px rgba(102,126,234,0.35);
+    }
+    .ob-note {
+        color: #555;
+        font-size: 0.78em;
+        margin-top: 6px;
+    }
+
+    /* Purchase toast notifications */
+        @keyframes toastPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        @media (max-width: 480px) {
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top announcement bar -->
+<div class="top-bar">
+    ⚡ All Products Available · One-time payments · Lifetime access · <a href="#products">Shop Now →</a>
+</div>
+
+<div class="container">
+
+    <header>
+        <h1>⚡ Automation Tools That Actually Work</h1>
+        <p class="subtitle">Ready-to-run scripts, templates & prompts for professionals who value their time</p>
+    </header>
+
+    <!-- Pricing banner -->
+    <div class="launch-banner" style="background: linear-gradient(135deg, #0a1a0a 0%, #0a0f0a 100%); border-color: #00cc88;">
+        <div class="fire">💚 Honest Pricing — Standard Rates, Always</div>
+        <p>Everything you need to automate your business. One-time payment, lifetime access, free updates forever. No countdown, no special drops.</p>
+        <p class="promo">One-time payment · Lifetime access · <span style="color:#00cc88">Free updates forever</span></p>
+    </div>
+
+    <!-- Coupon code section -->
+    <div class="coupon-section" id="couponSection">
+        <div class="coupon-label">Have a <span>discount code</span>? Apply it at checkout</div>
+        <form class="coupon-form" id="couponForm" onsubmit="return false;">
+            <input type="text" class="coupon-input" id="couponInput" placeholder="Enter code" autocomplete="off" spellcheck="false">
+            <button type="button" class="coupon-btn" onclick="applyCoupon()">Apply</button>
+        </form>
+        <div class="coupon-result" id="couponResult"></div>
+        <div class="coupon-note">Try: <strong style="color:#555">LAUNCH40</strong> or <strong style="color:#555">BUNDLE15</strong></div>
+    </div>
+
+    <!-- Social proof bar -->
+    <div style="background:#0a0a0a; border:1px solid #1a1a1a; border-radius:12px; padding:18px 24px; margin:20px 0; display:flex; justify-content:center; gap:40px; flex-wrap:wrap; align-items:center;">
+        <div style="text-align:center;">
+            <div style="color:#635bff; font-size:1.6em; font-weight:bold;">One-time purchase</div>
+            <div style="color:#555; font-size:0.75em;">Founders & builders</div>
+        </div>
+        <div style="width:1px; height:32px; background:#222;"></div>
+        <div style="text-align:center;">
+            <div style="color:#00cc88; font-size:1.6em; font-weight:bold;">Hours saved/week</div>
+            <div style="color:#555; font-size:0.75em;">Avg. hours saved/week</div>
+        </div>
+        <div style="width:1px; height:32px; background:#222;"></div>
+        <div style="text-align:center;">
+            <div style="color:#635bff; font-size:1.6em; font-weight:bold;">&lt;30min</div>
+            <div style="color:#555; font-size:0.75em;">First automation setup</div>
+        </div>
+        <div style="width:1px; height:32px; background:#222;"></div>
+        <div style="text-align:center;">
+            <div style="color:#00cc88; font-size:1.6em; font-weight:bold;">30-day</div>
+            <div style="color:#555; font-size:0.75em;">Money-back guarantee</div>
+        </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">🔒</span> Secure Checkout</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> Instant Delivery</div>
+        <div class="trust-item"><span class="trust-icon">💸</span> 30-Day Refund</div>
+        <div class="trust-item"><span class="trust-icon">📧</span> Lifetime Updates</div>
+        <div class="trust-item"><span class="trust-icon">📄</span> Full Documentation</div>
+    </div>
+
+    <!-- How checkout works -->
+    <div class="checkout-steps wrap">
+        <div class="checkout-step">
+            <div class="step-icon">1</div>
+            <div class="step-text"><strong>Click Buy Now</strong>Pick a product below</div>
+        </div>
+        <div class="checkout-step">
+            <div class="step-icon">2</div>
+            <div class="step-text"><strong>Pay Securely</strong>Visa, Mastercard, Apple Pay</div>
+        </div>
+        <div class="checkout-step">
+            <div class="step-icon">3</div>
+            <div class="step-text"><strong>Get It Instantly</strong>Download link in your inbox</div>
+        </div>
+    </div>
+
+    <!-- Social proof stats -->
+    <div class="social-proof">
+        <h3>Built for automation enthusiasts</h3>
+        <div class="proof-grid">
+            <div class="proof-stat">
+                <div class="proof-num">50+</div>
+                <div class="proof-label">Python Scripts</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-num">25+</div>
+                <div class="proof-label">Zapier Templates</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Bump: Complete Your Stack -->
+    <div class="order-bump" style="border-color:#1a2a1a; background:linear-gradient(135deg,#0a0f0a 0%,#0a0a0a 100%);">
+        <div class="ob-header">
+            <span class="ob-tag">💡 Add-on</span>
+            <span class="ob-title">Complete Your Automation Stack</span>
+        </div>
+        <div class="ob-body">
+            <div class="ob-left">
+                <div class="ob-product">AI Prompts Library — add for <strong style="color:#00cc88;">$29</strong> <span style="color:#444; font-size:0.8em;">(or get it free in the bundle)</span></div>
+                <div class="ob-desc">200+ curated prompts for ChatGPT, Claude & Gemini. Cold emails, LinkedIn posts, sales objections, business analysis — all copy-paste ready. No AI subscription required.</div>
+                <ul style="color:#888; font-size:0.83em; margin:8px 0 0 0; padding-left:16px; line-height:1.8;">
+                    <li>Email sequences that actually get opened (+22% avg open rate)</li>
+                    <li>LinkedIn content formula used by 100+ founders</li>
+                    <li>Sales objection handling master list</li>
+                    <li>Works with any AI — ChatGPT, Claude, Gemini, more</li>
+                </ul>
+                <div class="ob-bonus">🎁 Bonus: Cold email template, LinkedIn viral formula & objection handling master list included — yours to keep even if you request a refund.</div>
+            </div>
+            <div class="ob-right">
+                <a href="https://buy.stripe.com/28E28talv2nucSg5i44AU06" class="ob-btn" target="_blank" rel="noopener">Add AI Prompts — $29 →</a>
+                <div class="ob-note">One-time · Instant delivery · 30-day refund</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post-payment reassurance -->
+    <div class="post-payment">
+        <div class="post-payment-icon">📬</div>
+        <div class="post-payment-text">
+            <h3>Your download link arrives in seconds</h3>
+            <p>After payment, <strong>check your inbox immediately</strong> (also spam). You'll receive a secure download link valid forever. No waiting, no follow-up emails needed.</p>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div id="products"></div>
+    <div class="products-grid">
+
+        <!-- Product 1: Python Scripts Bundle — TOP PICK -->
+        <div class="product-card top-pick">
+            <span class="badge top">⭐ Editor's Pick</span>
+            <div class="product-name">Python Scripts Bundle</div>
+            <div class="product-tagline">50+ battle-tested automation scripts</div>
+            <div class="product-price">$79</div>
+            <div class="price-note">One-time · Lifetime access · Free updates forever</div>
+            <ul class="product-highlights">
+                <li>Email automation & web scraping</li>
+                <li>Data processing pipelines</li>
+                <li>API integrations</li>
+                <li>Copy-paste, runs in minutes</li>
+                <li>Commercial license included</li>
+            </ul>
+            <a href="https://buy.stripe.com/8x2dRb51b9PW2dC25S4AU08" class="buy-btn" target="_blank" rel="noopener">
+                Get Python Scripts — $79
+            </a>
+            <div class="btn-trust"><span class="btn-trust-icon">🔒</span> Secure checkout via Stripe</div>
+        </div>
+
+        <!-- Product 2: Zapier Templates -->
+        <div class="product-card">
+            <span class="badge new">⚡ Most Popular</span>
+            <div class="product-name">Zapier Templates</div>
+            <div class="product-tagline">25+ proven automation workflows</div>
+            <div class="product-price">$49</div>
+            <div class="price-note">One-time · Lifetime access · Free updates forever</div>
+            <ul class="product-highlights">
+                <li>CRM + Email automation</li>
+                <li>Social media scheduling</li>
+                <li>Lead generation workflows</li>
+                <li>No-code setup</li>
+                <li>Commercial license included</li>
+            </ul>
+            <a href="https://buy.stripe.com/5kQ6oJ8dnaU08C09yk4AU07" class="buy-btn" target="_blank" rel="noopener">
+                Get Zapier Templates — $49
+            </a>
+            <div class="btn-trust"><span class="btn-trust-icon">🔒</span> Secure checkout via Stripe</div>
+        </div>
+
+        <!-- Product 3: AI Prompts Library -->
+        <div class="product-card">
+            <span class="badge new">✨ Best Value</span>
+            <div class="product-name">AI Prompts Library</div>
+            <div class="product-tagline">200+ curated prompts for AI tools</div>
+            <div class="product-price">$29</div>
+            <div class="price-note">One-time · Lifetime access · Free updates forever</div>
+            <ul class="product-highlights">
+                <li>ChatGPT, Claude & Gemini</li>
+                <li>Writing, coding & marketing</li>
+                <li>Business analysis prompts</li>
+                <li>Copy-paste ready</li>
+                <li>Commercial license included</li>
+            </ul>
+            <a href="https://buy.stripe.com/28E28talv2nucSg5i44AU06" class="buy-btn" target="_blank" rel="noopener">
+                Get AI Prompts — $29
+            </a>
+            <div class="btn-trust"><span class="btn-trust-icon">🔒</span> Secure checkout via Stripe</div>
+        </div>
+
+    </div>
+
+    <!-- Bundle cross-sell -->
+    <div class="bundle-section">
+        <div class="bundle-card">
+            <div class="bundle-badge">🔥 BEST VALUE — SAVE $58</div>
+            <h2 class="bundle-title">Complete Automation Bundle</h2>
+            <p class="bundle-desc">All 3 products in one package — everything you need to automate your entire business</p>
+            <div class="bundle-price">$99</div>
+            <div class="bundle-save">All 3 products included — Python Scripts + Zapier Templates + AI Prompts</div>
+            <div class="bundle-items">
+                <div class="bundle-item"><span class="val">Python Scripts</span> $79 value</div>
+                <div class="bundle-item"><span class="val">Zapier Templates</span> $49 value</div>
+                <div class="bundle-item"><span class="val">AI Prompts</span> $29 value</div>
+            </div>
+            <a href="https://buy.stripe.com/9B65kF1OZfagcSg7qc4AU09" class="bundle-btn" target="_blank" rel="noopener">
+                Get the Bundle — $99
+            </a>
+            <div class="btn-trust" style="margin-top:10px;"><span class="btn-trust-icon">🔒</span> Secure checkout via Stripe</div>
+            <p class="bundle-note">💚 One-time payment, lifetime access. No code needed.</p>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">How do I receive the products after purchase?</div>
+            <div class="faq-a">After completing payment via Stripe, you'll receive an email with download links instantly. Check your spam folder if you don't see it within 5 minutes.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What payment methods do you accept?</div>
+            <div class="faq-a">We accept all major credit cards, debit cards, and Apple Pay via Stripe — one of the most trusted payment processors worldwide.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is there a refund policy?</div>
+            <div class="faq-a">Yes — 30-day money-back guarantee, no questions asked. If you're not satisfied, email us and we'll process your refund.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Do I need technical skills to use these?</div>
+            <div class="faq-a">No. Python Scripts require basic Python setup (we provide documentation); Zapier Templates are no-code; AI Prompts are copy-paste. Everything is designed to work out of the box.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Can I use these for client work?</div>
+            <div class="faq-a">Yes. All products include a commercial license — use them in your business or for client projects without additional fees.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Will I get free updates?</div>
+            <div class="faq-a">Yes. All purchases include lifetime updates. As we add new scripts, templates, and prompts, you'll get them at no extra cost.</div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div style="text-align: center; padding: 30px 0; color: #555; font-size: 0.88em;">
+        Questions? Email <a href="mailto:wuchunkin123@gmail.com" style="color: #635bff;">wuchunkin123@gmail.com</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 EveryCompanyClaw · <a href="https://everycompanyclaw.github.io/company-automation" target="_blank">everycompanyclaw.github.io/company-automation</a></p>
+</footer>
+
+<!-- Purchase toast notifications -->
+
+
+<script>
+// Coupon validation
+const VALID_COUPONS = {
+    'LAUNCH40': { discount: 0.40, label: '40% off' },
+    'BUNDLE15': { discount: 0.15, label: '15% off' },
+    'EARLYBIRD': { discount: 0.25, label: '25% off' },
+};
+
+let appliedCoupon = null;
+
+function applyCoupon() {
+    const input = document.getElementById('couponInput');
+    const result = document.getElementById('couponResult');
+    const code = input.value.trim().toUpperCase();
+
+    if (!code) {
+        result.textContent = 'Please enter a discount code';
+        result.className = 'coupon-result error';
+        input.className = 'coupon-input rejected';
+        return;
+    }
+
+    if (VALID_COUPONS[code]) {
+        appliedCoupon = { code, ...VALID_COUPONS[code] };
+        input.className = 'coupon-input applied';
+        result.textContent = `✓ Code applied — you're getting ${appliedCoupon.label}!`;
+        result.className = 'coupon-result success';
+        updatePricesWithDiscount();
+    } else {
+        appliedCoupon = null;
+        input.className = 'coupon-input rejected';
+        result.textContent = '✗ Invalid code. Try LAUNCH40 or BUNDLE15.';
+        result.className = 'coupon-result error';
+        resetPrices();
+    }
+}
+
+function updatePricesWithDiscount() {
+    if (!appliedCoupon) return;
+    const prices = [
+        { el: document.querySelector('.product-card.top-pick .product-price'), original: 79 },
+        { el: document.querySelector('.product-card:nth-child(2) .product-price'), original: 49 },
+        { el: document.querySelector('.product-card:nth-child(3) .product-price'), original: 29 },
+        { el: document.querySelector('.bundle-price'), original: 99 },
+    ];
+    prices.forEach(({ el, original }) => {
+        if (!el) return;
+        const discounted = Math.round(original * (1 - appliedCoupon.discount));
+        const wasEl = el.querySelector('.was');
+        if (!wasEl) {
+            const was = document.createElement('span');
+            was.className = 'was';
+            was.textContent = `$${original}`;
+            el.appendChild(was);
+        }
+        el.childNodes[0].textContent = `$${discounted}`;
+    });
+    // Update button text
+    const btns = document.querySelectorAll('.buy-btn');
+    const originalPrices = [79, 49, 29];
+    btns.forEach((btn, i) => {
+        if (i < 3 && originalPrices[i]) {
+            const discounted = Math.round(originalPrices[i] * (1 - appliedCoupon.discount));
+            const productNames = ['Python Scripts', 'Zapier Templates', 'AI Prompts'];
+            btn.childNodes[0].textContent = `Get ${productNames[i]} — $${discounted}`;
+        }
+    });
+    const bundleBtn = document.querySelector('.bundle-btn');
+    if (bundleBtn) {
+        const discounted = Math.round(99 * (1 - appliedCoupon.discount));
+        bundleBtn.childNodes[0].textContent = `Get the Bundle — $${discounted}`;
+    }
+}
+
+function resetPrices() {
+    const priceEls = [
+        { el: document.querySelector('.product-card.top-pick .product-price'), original: '$79' },
+        { el: document.querySelector('.product-card:nth-child(2) .product-price'), original: '$49' },
+        { el: document.querySelector('.product-card:nth-child(3) .product-price'), original: '$29' },
+    ];
+    priceEls.forEach(({ el, original }) => {
+        if (!el) return;
+        const wasEl = el.querySelector('.was');
+        if (wasEl) wasEl.remove();
+        el.childNodes[0].textContent = original;
+    });
+    const btns = document.querySelectorAll('.buy-btn');
+    const productNames = ['Python Scripts', 'Zapier Templates', 'AI Prompts'];
+    const originalPrices = [79, 49, 29];
+    btns.forEach((btn, i) => {
+        if (i < 3) {
+            btn.childNodes[0].textContent = `Get ${productNames[i]} — $${originalPrices[i]}`;
+        }
+    });
+    const bundleBtn = document.querySelector('.bundle-btn');
+    if (bundleBtn) {
+        bundleBtn.childNodes[0].textContent = 'Get the Bundle — $99';
+    }
+}
+
+</script>
+
+</body>
+</html>
